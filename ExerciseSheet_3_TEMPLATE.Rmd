@@ -81,6 +81,7 @@ a)  Load the `pixar_films` dataset into R. Clean the dataset by removing films w
 
     ```{r}
     # Create factor variable for film rating
+    # We use the existing variable, not creating a new one
     data_pixar_films <- data_pixar_films %>% 
       mutate(film_rating = as.factor(film_rating))
     ```
