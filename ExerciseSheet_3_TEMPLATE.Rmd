@@ -195,6 +195,47 @@ d)  Come up with a (research) question you want to answer with the data and brie
 
 e)  Use R to answer your chosen question. Please limit your analysis to the functions and techniques we have covered so far in the course. You are **not expected** to use advanced statistical models or external packages which haven't been introduced.
 
+    ```{r}
+    # Load the dataset into R
+    df_cigarettes <- read_csv("data/cigarette_consumption.csv")
+
+    # Select data for Germany and keep only the relevant columns
+    # Rename columns
+    df_cigarettes_germany <- df_cigarettes %>% 
+      filter(Entity == "Germany") %>% 
+      rename(country = Entity, 
+             year = Year, 
+             female_smokers = `Number of daily female smokers (IHME, GHDx (2012))`, 
+             male_smokers = `Number of daily male smokers (IHME, GHDx (2012))`) %>% 
+      select(country, year, female_smokers, male_smokers)
+
+    # Preview first 3 rows
+    head(df_cigarettes_germany, n = 3) 
+
+    # Filter 1980 and 2012
+    df_1980 <- df_cigarettes_germany %>% filter(year == 1980)
+    df_2012 <- df_cigarettes_germany %>% filter(year == 2012)
+
+    # Extract values
+    male_1980 <- df_1980$male_smokers
+    male_2012 <- df_2012$male_smokers
+    female_1980 <- df_1980$female_smokers
+    female_2012 <- df_2012$female_smokers
+
+    # Calculate percentage reduction
+    male_diff <- male_1980 - male_2012
+    female_diff <- female_1980 - female_2012
+
+    male_pct <- (male_diff / male_1980) * 100
+    female_pct <- (female_diff / female_1980) * 100
+
+    # Print results
+    male_pct
+    female_pct
+    ```
+
+    Between 1980 and 2012, the number of daily smokers in Germany decreased by approximately 21.6% among men and 17.2% among women. This means that men showed a greater percentage reduction in daily smoking during this period.
+
 f)  Create a meaningful plot / figure with the dataset. Make sure to provide a figure caption (via the chunk options / Rmarkdown) and correctly label the figure.
 
 ## Final Note
