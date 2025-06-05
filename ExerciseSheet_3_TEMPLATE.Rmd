@@ -89,6 +89,31 @@ a)  Load the `pixar_films` dataset into R. Clean the dataset by removing films w
 
 b)  Inspect the film titles manually. Which films form a film series? A film series can be identified by a common word in the titles of the films, often in conjunction with a number in the title, e.g. "Despicable Me" and "Despicable Me 2". Create a dataframe which displays a list of the different series with the titles of the films and how many films belong to the series. Output the dataframe.
 
+    ```{r}
+    # We inspected the film titles manually and noticed that the only film series are Toy Story, Cars and Incredibles
+
+    # Create series variable
+    data_pixar_films <- data_pixar_films %>%
+      mutate(series = case_when(
+        str_detect(film, "Toy Story") ~ "Toy Story",
+        str_detect(film, "Cars") ~ "Cars",
+        str_detect(film, "Incredibles") ~ "Incredibles",
+        TRUE ~ "None"
+      ))
+
+    # Create a dataframe listing the different series with their film titles and the count of films in each series
+    different_series <- data_pixar_films %>%
+      filter(series != "None") %>% 
+      group_by(series) %>%
+      summarise(
+        films = paste(film, collapse = ", "),
+        count = n()
+      )
+
+    # Displaying dataframe
+    knitr::kable(different_series, caption = "Films per series with titles")
+    ```
+
 c)  Load the `public_response` dataframe into R. Convert the `cinema_score` variable into a factor while ensuring the factor levels are defined in ascending order, from the lowest to the highest score. Combine `public_response` with the `pixar_films` dataset using an appropriate merge variable.
 
 d)  Choose one of the variables representing the public response and create a bar plot for the films belonging to a series. Here are the details of the plot:
