@@ -238,6 +238,39 @@ e)  Use R to answer your chosen question. Please limit your analysis to the func
 
 f)  Create a meaningful plot / figure with the dataset. Make sure to provide a figure caption (via the chunk options / Rmarkdown) and correctly label the figure.
 
+    ```{r}
+    df_long <- df_cigarettes_germany %>%
+      pivot_longer(cols = c(male_smokers, female_smokers), names_to = "gender", values_to = "smokers")
+
+    # Plot
+    df_long %>% 
+    ggplot( 
+      mapping = aes(
+        x = year, 
+        y = smokers/1000000,
+        color = gender)) +
+      geom_point(size = 1.5) +
+      geom_line() +
+      labs(
+        title = "Number of daily smokers in Germany",
+        subtitle = "(1980–2012)",
+        x = "Year",
+        y = "Number of daily smokers (millions)",
+        color = "Gender"
+      ) + 
+      
+      scale_color_manual(
+        values = c("female_smokers" = "salmon", "male_smokers" = "skyblue"),
+        labels = c("Female", "Male")
+      ) +
+
+      theme_minimal()+
+        theme(
+        plot.title = element_text(hjust = 0.5, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5)
+      )
+    ```
+
 ## Final Note
 
 Make sure to push all your commits and changes to GitHub before submitting the exercise sheet.
