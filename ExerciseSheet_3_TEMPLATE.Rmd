@@ -145,6 +145,32 @@ d)  Choose one of the variables representing the public response and create a ba
 
     What do you notice when comparing the scores of the films in a series? Do you see any patterns?
 
+    ```{r}
+    # We choose the variable metacritic
+
+    # Creating bar plot for the films belonging to a series
+    combined_data %>% 
+      filter(series != "None") %>% 
+      arrange(series, release_date) %>%  
+      mutate(film = factor(film, levels = unique(film))) %>%  
+      ggplot(aes(x = series, y = metacritic, fill = film)) +
+      geom_col(position = position_dodge()) + 
+      labs(
+        title = "Public Response (Metacritic) by Film Series",
+        x = "Film Series",
+        y = "Metacritic Score",
+        fill = "Film"
+      ) +
+      theme_minimal() +
+      theme(
+      axis.title.x = element_text(size = 10, vjust = -0.5),
+      axis.title.y = element_text(size = 10, vjust = 2),
+      plot.title = element_text(hjust = 0.5, face = "bold")
+    )
+    ```
+
+    We observe a clear pattern: the first film in each series consistently earns the highest score, with a noticeable drop between the first and the following installments in the serie.
+
 ## Exercise 4: Open Analysis (4 points)
 
 This exercise is a bit more open-ended. You can choose any dataset from [Our World in Data](https://ourworldindata.org/) and analyze it, while determining the research question yourself.
