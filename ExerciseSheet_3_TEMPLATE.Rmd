@@ -41,6 +41,8 @@ d)  Name 2 strengths and 2 weaknesses of git. (Don't forget to create a commit a
 
 e)  Knit this exercise sheet. Some new files will automatically be generated when knitting the sheet e.g. the HTML page. Ignore these files, as we only want to track the source files themselves. You can, but don't need to create a `.gitignore` file. Just do not commit these files manually.
 
+    done
+
 ## Exercise 2: Putting your Repository on GitHub (3 Points)
 
 For this task you will upload your solution to GitHub.
@@ -54,6 +56,8 @@ b)  Push your code to this new repository by copying and executing the snippet o
     done
 
 c)  Regularly push your latest changes to GitHub again and especially do so when you are finished with this sheet.
+
+    done
 
 ## Exercise 3: Pixar Films (4 Points)
 
