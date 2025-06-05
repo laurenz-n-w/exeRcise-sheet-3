@@ -65,7 +65,27 @@ For small datasets like these adding them to git is not a problem.
 
 a)  Load the `pixar_films` dataset into R. Clean the dataset by removing films without a title. Inspect the variable `film_rating`. What are the possible values and what do they mean? Create a factor variable for the film rating. Why is this appropriate?
 
-<!-- -->
+    ```{r}
+    # Load tidyverse packages
+    library(tidyverse)
+
+    # Load pixar_films dataset
+    data_pixar_films <- read_csv("data/pixar_films.csv")
+
+    # Remove all films without a title
+    data_pixar_films <- data_pixar_films %>% 
+      filter(!is.na(film))
+    ```
+
+    There are three films in the dataset, namely Luca, Turning Red, and Lightyear, without a film rating. Although I have not seen any of these films, by watching the trailers and comparing them to the other films, I believe Luca should be rated G, which means it is suitable for a general audience. The other two films should be rated PG, meaning parental guidance is suggested.
+
+    ```{r}
+    # Create factor variable for film rating
+    data_pixar_films <- data_pixar_films %>% 
+      mutate(film_rating = as.factor(film_rating))
+    ```
+
+    This is appropriate because there are only two categories: G (General Audience) and PG (Parental Guidance).
 
 b)  Inspect the film titles manually. Which films form a film series? A film series can be identified by a common word in the titles of the films, often in conjunction with a number in the title, e.g. "Despicable Me" and "Despicable Me 2". Create a dataframe which displays a list of the different series with the titles of the films and how many films belong to the series. Output the dataframe.
 
