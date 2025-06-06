@@ -83,6 +83,8 @@ a)  Load the `pixar_films` dataset into R. Clean the dataset by removing films w
 
     There are three films in the dataset, namely Luca, Turning Red, and Lightyear, without a film rating. Although I have not seen any of these films, by watching the trailers and comparing them to the other films, I believe Luca should be rated G, which means it is suitable for a general audience. The other two films should be rated PG, meaning parental guidance is suggested.
 
+    In general, possible film ratings are G (general audience), PG (parental guidance suggested), PG-13 (some material may be inappropriate for children under 13), R (restricted, under 17 requires adult supervision), and NC-17 (no one 17 and under admitted).
+
     ```{r}
     # Create factor variable for film rating
     # We use the existing variable, not creating a new one
@@ -90,7 +92,7 @@ a)  Load the `pixar_films` dataset into R. Clean the dataset by removing films w
       mutate(film_rating = as.factor(film_rating))
     ```
 
-    This is appropriate because there are only two categories: G (General Audience) and PG (Parental Guidance).
+    This is appropriate because there are only three categories: G (General Audience), PG (Parental Guidance) and NA (Not Available).
 
 b)  Inspect the film titles manually. Which films form a film series? A film series can be identified by a common word in the titles of the films, often in conjunction with a number in the title, e.g. "Despicable Me" and "Despicable Me 2". Create a dataframe which displays a list of the different series with the titles of the films and how many films belong to the series. Output the dataframe.
 
